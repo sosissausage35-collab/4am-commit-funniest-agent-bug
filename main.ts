@@ -33,10 +33,14 @@ function validateEntry(message) {
 
 validateEntry(MESSAGE);
 
-const outDir = "/output";
-const outPath = join(outDir, "entry.txt");
-mkdirSync(outDir, { recursive: true });
-writeFileSync(outPath, MESSAGE, "utf8");
+// Write the validated message to the output file and report it.
+function writeEntry(message: string): void {
+  const outDir = "/output";
+  const outPath = join(outDir, "entry.txt");
+  mkdirSync(outDir, { recursive: true });
+  writeFileSync(outPath, message, "utf8");
+  console.log(message);
+  console.log(`Wrote ${message.length} characters to ${outPath}`);
+}
 
-console.log(MESSAGE);
-console.log(`Wrote ${MESSAGE.length} characters to ${outPath}`);
+writeEntry(MESSAGE);
